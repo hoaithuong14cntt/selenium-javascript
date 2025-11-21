@@ -1,0 +1,24 @@
+{
+  "name": "selenium-js-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:demo": "node tests/demo.test.js",
+    "test:xpath": "node tests/xpath.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.1",
+  "dependencies": {
+    "chromedriver": "^142.0.1",
+    "selenium-webdriver": "^4.38.0"
+  },
+  "devDependencies": {
+    "chai": "^6.2.0",
+    "mocha": "^11.7.5"
+  }
+}
