@@ -8,52 +8,49 @@ describe("OrangeHRM - Login Test Suite", function () {
   let driver;
   let loginPage;
 
-  before(async () => {
+  beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
     loginPage = new LoginPage(driver);
-  });
-
-  after(async () => {
-    await driver.quit();
-  });
-
-  beforeEach(async () => {
     await loginPage.openLoginPage();
+  });
+
+  afterEach(async () => {
+    await driver.quit();   // đóng trình duyệt sau mỗi test
   });
 
   // ---------------------------------------------------
   // 01 — Login thành công
   // ---------------------------------------------------
   it("TC01 - Login successfully with valid account", async () => {
-  await loginPage.login("Admin", "admin123");
+    await loginPage.login("Admin", "admin123");
 
-  // Chờ URL có chứa "/dashboard" tối đa 5s
-  await driver.wait(async () => {
-    const currentUrl = await driver.getCurrentUrl();
-    return currentUrl.includes("/dashboard");
-  }, 5000, "URL did not change to /dashboard");
+    // Chờ URL có chứa "/dashboard" tối đa 5s
+    await driver.wait(async () => {
+      const currentUrl = await driver.getCurrentUrl();
+      return currentUrl.includes("/dashboard");
+    }, 5000, "URL did not change to /dashboard");
 
-  // Hoặc chờ element Dashboard hiển thị (nếu muốn chính xác hơn)
-  // const dashboardHeader = await driver.wait(
-  //   until.elementLocated(By.css('h6.oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module')),
-  //   5000
-  // );
-  // assert.ok(await dashboardHeader.isDisplayed(), "Do not transfer to Dashboard");
+    // Hoặc chờ element Dashboard hiển thị (nếu muốn chính xác hơn)
+    // const dashboardHeader = await driver.wait(
+    //   until.elementLocated(By.css('h6.oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module')),
+    //   5000
+    // );
+    // assert.ok(await dashboardHeader.isDisplayed(), "Do not transfer to Dashboard");
 
-  // Sau khi wait xong thì assert URL
-  const url = await driver.getCurrentUrl();
-  assert.ok(url.includes("/dashboard"), "Do not transfer to Dashboard");
-});
+    // Sau khi wait xong thì assert URL
+    const url = await driver.getCurrentUrl();
+    assert.ok(url.includes("/dashboard"), "Do not transfer to Dashboard");
+  });
 
-  // // ---------------------------------------------------
-  // // 02 — Sai password
-  // // ---------------------------------------------------
-  // it("TC02 - Login thất bại khi nhập sai mật khẩu", async () => {
-  //   await loginPage.login("Admin", "wrongpass");
+  // ---------------------------------------------------
+  // 02 — Sai password
+  // ---------------------------------------------------
+  it("TC02 - Login failed when entering wrong password", async () => {
+    await loginPage.login("Admin", "wrongpass");
 
-  //   const error = await loginPage.getErrorMessage();
-  //   assert.strictEqual(error, "Invalid credentials");
-  // });
+    const error = await loginPage.getErrorMessage();
+    assert.strictEqual(error, "Invalid credentials");
+  });
 
   // // ---------------------------------------------------
   // // 03 — Sai username

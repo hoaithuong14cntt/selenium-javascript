@@ -5,9 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:demo": "node tests/demo.test.js",
-    "test:xpath": "node tests/xpath.test.js"
+    "test": "mocha tests/**/*.test.js"
   },
   "keywords": [],
   "author": "",
