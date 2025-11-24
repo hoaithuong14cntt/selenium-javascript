@@ -41,11 +41,17 @@ class LoginPage {
       5000
     );
     await this.driver.wait(until.elementIsVisible(errorElement), 5000);
+    
     return await errorElement.getText();
   }
 
   async getRequiredMessage() {
-    const requiredElement = await this.driver.findElement(By.css('.oxd-input-field-error-message'));
+    const requiredElement = await this.driver.wait(
+      until.elementLocated(By.css('.oxd-input-field-error-message')),
+      5000
+    );
+    await this.driver.wait(until.elementIsVisible(requiredElement), 5000);
+
     return await requiredElement.getText();
   }
 
@@ -53,9 +59,14 @@ class LoginPage {
     await this.driver.get('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
   }
 
-  async click() {
-    const button = await this.driver.findElement(this.buttonSubmit);
-    await button.click();
+  async getRequiredMessagesCount() {
+    const requiredElements = await this.driver.wait(
+      until.elementsLocated(By.css('.oxd-input-field-error-message')),
+      5000
+    );
+    await this.driver.wait(until.elementIsVisible(requiredElements[0]), 5000);
+
+    return requiredElements.length;
   }
 
   async getTitle() {

@@ -52,43 +52,43 @@ describe("OrangeHRM - Login Test Suite", function () {
     assert.strictEqual(error, "Invalid credentials");
   });
 
-  // // ---------------------------------------------------
-  // // 03 — Sai username
-  // // ---------------------------------------------------
-  // it("TC03 - Login thất bại khi username sai", async () => {
-  //   await loginPage.login("WrongUser", "admin123");
+  // ---------------------------------------------------
+  // 03 — Sai username
+  // ---------------------------------------------------
+  it("TC03 - Login failed when username is incorrect", async () => {
+    await loginPage.login("WrongUser", "admin123");
 
-  //   const error = await loginPage.getErrorMessage();
-  //   assert.strictEqual(error, "Invalid credentials");
-  // });
+    const error = await loginPage.getErrorMessage();
+    assert.strictEqual(error, "Invalid credentials");
+  });
 
-  // // ---------------------------------------------------
-  // // 04 — Username trống
-  // // ---------------------------------------------------
-  // it("TC04 - Login thất bại khi để trống username", async () => {
-  //   await loginPage.login("", "admin123");
+  // ---------------------------------------------------
+  // 04 — Username trống
+  // ---------------------------------------------------
+  it("TC04 - Login failed when username is blank", async () => {
+    await loginPage.login("", "admin123");
 
-  //   const error = await loginPage.getRequiredMessage();
-  //   assert.strictEqual(error, "Required");
-  // });
+    const error = await loginPage.getRequiredMessage();
+    assert.strictEqual(error, "Required");
+  });
 
-  // // ---------------------------------------------------
-  // // 05 — Password trống
-  // // ---------------------------------------------------
-  // it("TC05 - Login thất bại khi để trống password", async () => {
-  //   await loginPage.login("Admin", "");
+  // ---------------------------------------------------
+  // 05 — Password trống
+  // ---------------------------------------------------
+  it("TC05 - Login failed when password is blank", async () => {
+    await loginPage.login("Admin", "");
 
-  //   const error = await loginPage.getRequiredMessage();
-  //   assert.strictEqual(error, "Required");
-  // });
+    const error = await loginPage.getRequiredMessage();
+    assert.strictEqual(error, "Required");
+  });
 
-  // // ---------------------------------------------------
-  // // 06 — Trống cả username + password
-  // // ---------------------------------------------------
-  // it("TC06 - Login thất bại khi để trống cả hai trường", async () => {
-  //   await loginPage.login("", "");
+  // ---------------------------------------------------
+  // 06 — Trống cả username + password
+  // ---------------------------------------------------
+  it("TC06 - Login failed when both fields are left blank", async () => {
+    await loginPage.login("", "");
 
-  //   const msg = await loginPage.getRequiredMessagesCount();
-  //   assert.strictEqual(msg, 2, "Phải hiện 2 lỗi Required");
-  // });
+    const msg = await loginPage.getRequiredMessagesCount();
+    assert.strictEqual(msg, 2, "Must show 2 errors Required");
+  });
 });
