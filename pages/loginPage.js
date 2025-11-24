@@ -36,7 +36,11 @@ class LoginPage {
   }
 
   async getErrorMessage() {
-    const errorElement = await this.driver.findElement(By.css('.oxd-alert-content-text'));
+    const errorElement = await this.driver.wait(
+      until.elementLocated(By.css('.oxd-alert-content-text')),
+      5000
+    );
+    await this.driver.wait(until.elementIsVisible(errorElement), 5000);
     return await errorElement.getText();
   }
 
