@@ -41,7 +41,7 @@ class LoginPage {
       5000
     );
     await this.driver.wait(until.elementIsVisible(errorElement), 5000);
-    
+
     return await errorElement.getText();
   }
 
@@ -55,18 +55,22 @@ class LoginPage {
     return await requiredElement.getText();
   }
 
-  async open() {
-    await this.driver.get('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-  }
-
   async getRequiredMessagesCount() {
     const requiredElements = await this.driver.wait(
       until.elementsLocated(By.css('.oxd-input-field-error-message')),
       5000
     );
-    await this.driver.wait(until.elementIsVisible(requiredElements[0]), 5000);
 
     return requiredElements.length;
+  }
+
+  async clickForgotPassword() {
+    const forgotPasswordLink = await this.driver.wait(
+      until.elementLocated(By.css('p.orangehrm-login-forgot-header')),
+      5000
+    );
+    await this.driver.wait(until.elementIsVisible(forgotPasswordLink), 5000);
+    await forgotPasswordLink.click();
   }
 
   async getTitle() {
