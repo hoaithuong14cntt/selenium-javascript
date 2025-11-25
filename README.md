@@ -1,79 +1,105 @@
-Selenium JS Demo
+# Selenium JS Demo
 
-Đây là project demo sử dụng Selenium WebDriver với JavaScript để thực hành automation testing.
+Đây là project **demo sử dụng Selenium WebDriver với JavaScript** để thực hành automation testing.
 
-📦 Thông tin project
+---
 
-Name: selenium-js-demo
+## 📦 Thông tin project
 
-Version: 1.0.0
+* **Name:** selenium-js-demo
+* **Version:** 1.0.0
+* **Main file:** index.js
+* **Package manager:** pnpm@10.18.1
+* **Dependencies:**
 
-Main file: index.js
+  * selenium-webdriver
+  * chromedriver
+* **Dev dependencies:**
 
-Package manager: pnpm@10.18.1
+  * mocha
+  * chai
 
-Dependencies:
+---
 
-selenium-webdriver
+## ⚙️ Cài đặt
 
-chromedriver
+1. Clone project về máy:
 
-Dev dependencies:
-
-mocha
-
-chai
-
-⚙️ Cài đặt
-
-Clone project về máy:
-
+```bash
 git clone <URL-repo-của-bạn>
 cd selenium-js-demo
+```
 
-Cài dependencies bằng pnpm:
+2. Cài dependencies bằng **pnpm**:
 
+```bash
 pnpm install
-🧪 Chạy test
+```
 
-Project có các test scripts được định nghĩa trong package.json:
+---
 
-Chạy demo test:
+## 🧹 Kiểm tra code trước khi push
 
-pnpm test:demo
+Trước khi push code lên repository, hãy chạy **ESLint** để kiểm tra code:
 
-Chạy xpath test:
+```bash
+pnpm lint
+```
 
-pnpm test:xpath
+Nếu có lỗi, bạn có thể tự động sửa format bằng:
 
-Chạy script test mặc định (hiện tại chưa có test):
+```bash
+pnpm lint:fix
+```
 
+> Giúp code sạch, đồng bộ style, giảm lỗi tiềm ẩn trước khi commit.
+
+---
+
+## 🧪 Chạy test
+
+Project có các test scripts được định nghĩa trong `package.json`.
+Để chạy tất cả test case:
+
+```bash
 pnpm test
-📂 Cấu trúc thư mục
+```
+
+* Chạy demo test:
+
+---
+
+## 📂 Cấu trúc thư mục
+
+```
 selenium-js-demo/
 ├─ pages/          # Chứa page object
 ├─ tests/          # Chứa các test case
 ├─ package.json
 ├─ pnpm-lock.yaml
 └─ README.md
-🔧 Công cụ sử dụng
+```
 
-Node.js (>=16)
+---
 
-pnpm
+## 🔧 Công cụ sử dụng
 
-Selenium WebDriver
+* Node.js (>=16)
+* pnpm
+* Selenium WebDriver
+* ChromeDriver
+* Mocha + Chai
 
-ChromeDriver
+---
 
-Mocha + Chai
+## 📝 Ghi chú
 
-📝 Ghi chú
+* **node_modules/** đã được ignore, cài lại bằng `pnpm install` nếu clone repo.
+* Test được chạy trên **Chrome** với Selenium WebDriver.
+* Luôn **lint code trước khi push** để giữ code sạch.
 
-node_modules/ đã được ignore, cài lại bằng pnpm install nếu clone repo.
+---
 
-Test được chạy trên Chrome với Selenium WebDriver.
-
-📌 License
+## 📌 License
 
 ISC
