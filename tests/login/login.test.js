@@ -1,10 +1,11 @@
-import { Builder, Browser, until } from 'selenium-webdriver';
-import assert from 'assert';
-import LoginPage from '../../pages/loginPage.js';
-import chrome from 'selenium-webdriver/chrome.js';
+import { Builder, Browser, until } from "selenium-webdriver";
+import assert from "assert";
+import LoginPage from "../../pages/loginPage.js";
+import chrome from "selenium-webdriver/chrome.js";
 
 describe("OrangeHRM - Login Test Suite", function () {
   this.timeout(30000); // tăng timeout để Selenium không bị timeout
+  this.slow(5000);
 
   let driver;
   let loginPage;
@@ -31,10 +32,10 @@ describe("OrangeHRM - Login Test Suite", function () {
   // 01 — Login thành công
   // ---------------------------------------------------
   it("TC01 - Login successfully with valid account", async () => {
-    await loginPage.login("Admin", "admin123");
+    await loginPage.login(process.env.USERNAME, process.env.PASSWORD);
 
     // Chờ URL có chứa "/dashboard" tối đa 5s
-    await driver.wait(until.urlContains('/dashboard'), 5000, 'URL did not change to /dashboard');
+    await driver.wait(until.urlContains("/dashboard"), 5000, "URL did not change to /dashboard");
 
     // Hoặc chờ element Dashboard hiển thị (nếu muốn chính xác hơn)
     // const dashboardHeader = await driver.wait(
@@ -106,7 +107,7 @@ describe("OrangeHRM - Login Test Suite", function () {
     await loginPage.clickForgotPassword();
 
     // Chờ URL có chứa "/requestPasswordResetCode" tối đa 5s
-    await driver.wait(until.urlContains('/requestPasswordResetCode'), 5000, 'URL did not change to /requestPasswordResetCode');
+    await driver.wait(until.urlContains("/requestPasswordResetCode"), 5000, "URL did not change to /requestPasswordResetCode");
 
     // Sau khi wait xong thì assert URL
     const url = await driver.getCurrentUrl();
