@@ -1,13 +1,13 @@
-import { By } from 'selenium-webdriver';
+import { By } from "selenium-webdriver";
 
 class GooglePage {
   constructor(driver) {
     this.driver = driver;
-    this.searchBox = By.name('q');
+    this.searchBox = By.name("q");
   }
 
   async open() {
-    await this.driver.get('https://www.google.com');
+    await this.driver.get("https://www.google.com");
   }
 
   async search(text) {

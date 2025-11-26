@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:demo": "node tests/demo.test.js",
-    "test:xpath": "node tests/xpath.test.js"
+    "test": "mocha --require ./tests/setup.js tests/**/*.test.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,11 @@
     "selenium-webdriver": "^4.38.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "chai": "^6.2.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
     "mocha": "^11.7.5"
   }
 }
